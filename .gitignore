@@ -33,6 +33,7 @@ Temporary Items
 # Distribution / packaging
 .Python
 env/
+venv/
 build/
 develop-eggs/
 dist/
@@ -70,22 +71,13 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-
 # Sphinx documentation
 docs/_build/
 
-# IntelliJ Idea family of suites
-.idea
-*.iml
-## File-based project format:
-*.ipr
-*.iws
+# IDE settings
+.idea/
+.vscode/
+
 ## mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -97,5 +89,3 @@ output/
 python_boilerplate/
 cookiecutter-pypackage-env/
 
-# IDE settings
-.vscode/
