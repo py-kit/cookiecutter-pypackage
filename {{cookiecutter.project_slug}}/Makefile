@@ -26,7 +26,7 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
+clean: clean-build clean-pyc clean-test clean-venv## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
 	rm -fr build/
@@ -47,25 +47,20 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
 
+clean-venv:
+	rm -rf venv
+
 lint: ## check style with flake8
 	flake8 {{ cookiecutter.project_slug }} tests
 
 test: ## run tests quickly with the default Python
-{%- if cookiecutter.use_pytest == 'y' %}
 	pytest
-{%- else %}
-	python setup.py test
-{%- endif %}
 
 test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-{%- if cookiecutter.use_pytest == 'y' %}
 	coverage run --source {{ cookiecutter.project_slug }} -m pytest
-{%- else %}
-	coverage run --source {{ cookiecutter.project_slug }} setup.py test
-{%- endif %}
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
@@ -82,6 +77,7 @@ servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
 release: dist ## package and upload a release
+	twine check dist/*
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
