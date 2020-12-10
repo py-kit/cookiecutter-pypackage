@@ -2,11 +2,8 @@
 
 """Tests for `{{ cookiecutter.project_slug }}` package."""
 
-{% if cookiecutter.use_pytest == 'y' -%}
 import pytest
-{% else %}
-import unittest
-{%- endif %}
+
 {%- if cookiecutter.command_line_interface|lower == 'click' %}
 from click.testing import CliRunner
 {%- endif %}
@@ -16,6 +13,14 @@ from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}
 from {{ cookiecutter.project_slug }} import cli
 {%- endif %}
 
+@pytest.fixture
+def response():
+    """Sample pytest fixture.
+
+    See more at: http://doc.pytest.org/en/latest/fixture.html
+    """
+    # import requests
+    # return requests.get('https://github.com/pykit/cookiecutter-pypackage')
 
 def test_content(response):
     """Sample pytest test function with the pytest fixture as an argument."""

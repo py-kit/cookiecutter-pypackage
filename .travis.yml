@@ -2,6 +2,7 @@
 
 language: python
 python:
+  - 3.9
   - 3.8
   - 3.7
   - 3.6
@@ -17,7 +18,7 @@ script: tox
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
-  user: audreyr
+  user: REPLACE_ME
   password:
     secure: PLEASE_REPLACE_ME
   on:

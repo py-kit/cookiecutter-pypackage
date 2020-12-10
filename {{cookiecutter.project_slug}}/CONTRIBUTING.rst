@@ -64,10 +64,10 @@ Ready to contribute? Here's how to set up `{{ cookiecutter.project_slug }}` for 
 
     $ git clone git@github.com:your_name_here/{{ cookiecutter.project_slug }}.git
 
-3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
+3. Install your local copy into a virtualenv::
 
-    $ mkvirtualenv {{ cookiecutter.project_slug }}
     $ cd {{ cookiecutter.project_slug }}/
+    $ make install
     $ python setup.py develop
 
 4. Create a branch for local development::
@@ -102,7 +102,7 @@ Before you submit a pull request, check that it meets these guidelines:
 2. If the pull request adds functionality, the docs should be updated. Put
    your new functionality into a function with a docstring, and add the
    feature to the list in README.rst.
-3. The pull request should work for Python 3.5, 3.6, 3.7 and 3.8, and for PyPy. Check
+3. The pull request should work for Python 3.5, 3.6, 3.7, 3.8, 3.9 and for PyPy. Check
    https://travis-ci.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}/pull_requests
    and make sure that the tests pass for all supported Python versions.
 
@@ -111,11 +111,7 @@ Tips
 
 To run a subset of tests::
 
-{% if cookiecutter.use_pytest == 'y' -%}
     $ pytest tests.test_{{ cookiecutter.project_slug }}
-{% else %}
-    $ python -m unittest tests.test_{{ cookiecutter.project_slug }}
-{%- endif %}
 
 Deploying
 ---------
